@@ -10,10 +10,10 @@ public class Vars {
 
     public static Context mContext = null;
 
-    public static ActivityMainBinding mainBinding = null;
-    public static CounterViewModel viewModel = null;
+    public static ActivityMainBinding mainBinding;
+    public static CounterViewModel viewModel;
 
-    public static BlankFragmentViewModel blankFragmentViewModel;
     public static FragmentBlankBinding binding;
+    public static BlankFragmentViewModel blankFragmentViewModel;
 
 }
