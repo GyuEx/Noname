@@ -20,8 +20,6 @@ import com.example.myapplication.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity{
 
     public static BlankFragment blankFragment;
-    public static Fragment fr;
-    public FragmentTransaction transaction;
     public static androidx.fragment.app.FragmentTransaction fragmentTransaction = null;
 
     @Override
@@ -29,15 +27,14 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         Vars.mContext = this;
 
-        //Vars.mainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
-//        Vars.viewModel = ViewModelProviders.of(this).get(CounterViewModel.class);
-//        Vars.mainBinding.setLifecycleOwner(this);
-//        Vars.mainBinding.setViewModel(Vars.viewModel);
+        Vars.mainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        Vars.viewModel = ViewModelProviders.of(this).get(CounterViewModel.class);
+        Vars.mainBinding.setLifecycleOwner(this);
+        Vars.mainBinding.setViewModel(Vars.viewModel);
 
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
         blankFragment = new BlankFragment();
-        fr = blankFragment;
-        fragmentTransaction.add(R.id.mL02,fr);
+        fragmentTransaction.add(R.id.mL02,blankFragment);
         fragmentTransaction.commit();
 
         Thread thread = new CountThread();

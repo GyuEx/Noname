@@ -14,8 +14,11 @@ public class CountThread extends java.lang.Thread {
     public void run(){
         while (isKeep)
         {
-            //((ITreaters)Vars.mContext).increase();
-            if(Vars.viewModel != null)Vars.viewModel.increase();
+            if(Vars.viewModel != null) Vars.viewModel.increase();
+            if(Vars.blankFragmentViewModel != null) Vars.blankFragmentViewModel.increase();
+            try {
+                Thread.sleep(1000);
+            }catch (Exception e) {};
         }
     }
 }
