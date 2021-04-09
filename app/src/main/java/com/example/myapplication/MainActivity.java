@@ -19,7 +19,7 @@ import com.example.myapplication.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity{
 
-    public static BlankFragment blankFragment;
+    public static Fragment fr,subFragment,blankFragment;
     public static androidx.fragment.app.FragmentTransaction fragmentTransaction = null;
 
     @Override
@@ -33,9 +33,26 @@ public class MainActivity extends AppCompatActivity{
         Vars.mainBinding.setViewModel(Vars.viewModel);
 
         fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        blankFragment = new BlankFragment();
-        fragmentTransaction.add(R.id.mL02,blankFragment);
-        fragmentTransaction.commit();
+        subFragment = new SubFragment();
+        fr = subFragment;
+        fragmentTransaction.add(R.id.mL02,fr);
+        fragmentTransaction.commitAllowingStateLoss();
+
+        Vars.mainBinding.fabAdd.setOnClickListener(view -> {
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            blankFragment = new BlankFragment();
+            fr = blankFragment;
+            fragmentTransaction.replace(R.id.mL02,fr);
+            fragmentTransaction.commitAllowingStateLoss();
+        });
+
+        Vars.mainBinding.fabRemove.setOnClickListener(view -> {
+            fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            subFragment = new SubFragment();
+            fr = subFragment;
+            fragmentTransaction.replace(R.id.mL02,fr);
+            fragmentTransaction.commitAllowingStateLoss();
+        });
 
         Thread thread = new CountThread();
         thread.setDaemon(true);

@@ -23,20 +23,29 @@ import com.example.myapplication.databinding.FragmentBlankBinding;
 
 public class BlankFragment extends Fragment {
 
+    View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_blank,container,false);
+        view = inflater.inflate(R.layout.fragment_blank,container,false);
+
+        Vars.binding = DataBindingUtil.bind(view);
+        Vars.blankFragmentViewModel = ViewModelProviders.of(requireActivity()).get(BlankFragmentViewModel.class);
+        Vars.binding.setLifecycleOwner(requireActivity());
+        Vars.binding.setViewModel(Vars.blankFragmentViewModel);
+
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Vars.binding = DataBindingUtil.bind(view);
-        Vars.blankFragmentViewModel = ViewModelProviders.of(requireActivity()).get(BlankFragmentViewModel.class);
-        Vars.binding.setLifecycleOwner(requireActivity());
-        Vars.binding.setViewModel(Vars.blankFragmentViewModel);
+//        Vars.binding = DataBindingUtil.bind(view);
+//        Vars.blankFragmentViewModel = ViewModelProviders.of(requireActivity()).get(BlankFragmentViewModel.class);
+//        Vars.binding.setLifecycleOwner(requireActivity());
+//        Vars.binding.setViewModel(Vars.blankFragmentViewModel);
     }
 }
