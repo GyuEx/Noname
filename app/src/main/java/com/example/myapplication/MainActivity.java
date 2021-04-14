@@ -17,9 +17,12 @@ import android.view.SurfaceControl;
 
 import com.example.myapplication.databinding.ActivityMainBinding;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity{
 
-    public static Fragment fr,subFragment,blankFragment;
+    public static Fragment fr,subFragment,blankFragment,listFragment;
     public static androidx.fragment.app.FragmentTransaction fragmentTransaction = null;
 
     @Override
@@ -48,15 +51,18 @@ public class MainActivity extends AppCompatActivity{
 
         Vars.mainBinding.fabRemove.setOnClickListener(view -> {
             fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            subFragment = new SubFragment();
-            fr = subFragment;
+            listFragment = new ListFragment();
+            fr = listFragment;
             fragmentTransaction.replace(R.id.mL02,fr);
             fragmentTransaction.commitAllowingStateLoss();
         });
 
+//        Vars.mainBinding.maB01.setOnClickListener(view -> {
+//            Vars.viewModel.insertList();
+//        });
+
         Thread thread = new CountThread();
         thread.setDaemon(true);
         thread.start();
-
     }
 }

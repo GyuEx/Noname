@@ -31,10 +31,10 @@ public class BlankFragment extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_blank,container,false);
 
-        Vars.binding = DataBindingUtil.bind(view);
+        Vars.fragmentBlankBinding = DataBindingUtil.bind(view);
         Vars.blankFragmentViewModel = ViewModelProviders.of(requireActivity()).get(BlankFragmentViewModel.class);
-        Vars.binding.setLifecycleOwner(requireActivity());
-        Vars.binding.setViewModel(Vars.blankFragmentViewModel);
+        Vars.fragmentBlankBinding.setLifecycleOwner(requireActivity());
+        Vars.fragmentBlankBinding.setViewModel(Vars.blankFragmentViewModel);
 
         return view;
     }
@@ -43,9 +43,17 @@ public class BlankFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Log.e("BlankFragment","On Fragment Create");
+
 //        Vars.binding = DataBindingUtil.bind(view);
 //        Vars.blankFragmentViewModel = ViewModelProviders.of(requireActivity()).get(BlankFragmentViewModel.class);
 //        Vars.binding.setLifecycleOwner(requireActivity());
 //        Vars.binding.setViewModel(Vars.blankFragmentViewModel);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.e("BlankFragment","On Fragment Destory");
     }
 }

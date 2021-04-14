@@ -44,6 +44,14 @@
                 android:layout_weight="1"
                 android:clickable="true"
                 app:srcCompat="@android:drawable/ic_delete" />
+
+            <Button
+                android:id="@+id/maB01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="@{v->viewModel.insertList()}"
+                android:text="Button" />
         </LinearLayout>
 
         <LinearLayout
